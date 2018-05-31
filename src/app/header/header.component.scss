@@ -1,0 +1,79 @@
+.appName{
+    color: #e50914;
+    font-family: 'Bowlby One SC', cursive;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+nav{
+    background: rgba(0, 0, 0, 0.75);
+    padding: 10px 40px;
+    height: 75px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    z-index: 1000;
+    box-shadow: 0 0 1px 0px white;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */     
+
+    .myCart{
+        color: #fff;
+        .icart{
+            vertical-align: middle;
+            font-size: 22px;
+            margin-right: 7px;
+        }
+        .iarr{
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        h4{
+            font-size: 17px;
+            margin: 0;
+            display: inline;
+        }
+        h4:first-of-type{
+            margin-right: 30px;
+            font-size: 15px;
+            background-color: #e50914;
+            color: white;
+            letter-spacing: 1px;
+            border: 1.5px solid #fff;
+            cursor: pointer;
+        }
+    }
+
+}
+
+.cont{
+    height: 100vh;
+    background-image: url('../../imgs/back.jpg');
+    background-repeat: no-repeat;
+    position: relative;
+    
+    .textApp{
+        color: white;
+        letter-spacing: 3px;
+        line-height: 140px;
+        font-size: 82px;
+        width: 100%;
+        text-align: center;
+        z-index: 3;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    
+        span{
+            font-family: 'Bowlby One SC', cursive;
+            color: #e50914;
+            text-transform: uppercase;
+            font-size: 100px;
+        }
+    }
+}

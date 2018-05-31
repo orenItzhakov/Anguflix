@@ -1,0 +1,17 @@
+<div class="allCollectionDiv">
+  <div class="collectionInfo">
+    <h2>My collection</h2>
+    <input class="form-control" placeholder="Search by title" [(ngModel)]="movieName"  *ngIf="myMovies.length>0"/>
+    <select class="form-control" [(ngModel)]="movieYear"  *ngIf="myMovies.length>0">
+      <option value="">All</option>
+      <option *ngFor="let year of yearsRange " value="{{year}}" >{{year}}</option>
+    </select>
+    <button class="form-control {{removeMode ? 'btn-danger' : 'btn-info'}}" *ngIf="myMovies.length>0" (click)="removeMode=!removeMode">{{removeMode ? 'Stop remove mode' : 'Remove mode'}}</button>
+  </div>  
+  <div class="selectedMovies">
+      <h3 class="headline" *ngIf="myMovies.length==0">Select movies from below to add to your collection</h3>
+      <div class="movies">
+        <app-movie *ngFor="let movie of myMovies| filterByColl:{title:movieName, year: movieYear}" [movie]="movie" [collection]="true" [mode]="removeMode" (deleteMovie)="deleteMovieFromCollection($event)"></app-movie>
+      </div>
+  </div>
+</div>

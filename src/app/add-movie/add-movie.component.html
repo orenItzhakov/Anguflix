@@ -1,0 +1,21 @@
+<h1>Add movie to library&nbsp;</h1>
+<div class="add-movie">
+    <label for="editName">
+      <p>Title</p><input type="text" [(ngModel)]="movie.title">
+    </label>
+    <label>
+      <p>Year</p><input type="text" [(ngModel)]="movie.year">
+    </label>
+    <label>
+      <p>Image url</p><input type="text" [(ngModel)]="movie.img">
+    </label>
+    <label>
+      <p>Price</p><input type="text" [(ngModel)]="movie.price">
+    </label>
+    <label>
+      <p>Descripton</p><input type="text" [(ngModel)]="movie.descrShort">
+    </label>
+    <div style="text-align:center;">
+      <button class="form-control" (click)="addMovie()">Add</button>
+    </div>
+</div>

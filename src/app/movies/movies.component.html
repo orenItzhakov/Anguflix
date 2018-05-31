@@ -1,0 +1,11 @@
+<div class="allMovieDiv">
+  <h1>All Movies in library&nbsp;</h1>
+
+  <input class="form-control" [(ngModel)]="filterTerm" placeholder="Filter movie by name..." />
+
+  <div class="filter-header" *ngIf="filterTerm?.length > 0">Filtering movie by name: {{ filterTerm }}</div>
+
+  <div class="movies">
+    <app-movie *ngFor="let movie of movies| filterByMovie:filterTerm" [movie]="movie" (addColl)="addToMyCollection($event)"></app-movie>
+  </div>
+</div>
