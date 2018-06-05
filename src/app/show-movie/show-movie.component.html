@@ -1,0 +1,44 @@
+<div *ngIf="movie" class="showMovie" id="movie" >
+  <div class="right">
+    <div class="rate">
+      <ngb-rating [(rate)]="currentRate"></ngb-rating><span>({{currentRate}})</span>
+    </div>
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="">
+  </div>
+  <div class="left">
+    <h1>{{movie.title}}({{movie.year}})</h1>
+    <p class="director">{{movie.director}}</p>
+    <p class="fullDit">{{movie.fullDescription}}</p>
+
+    <div *ngIf="movie.reviews.length > 0">
+      <button type="button" class="btn" data-toggle="collapse" data-target="#reviews">Show reviews</button>
+      <div id="reviews" class="collapse">
+        <div id="accordion">
+          <!-- all reviews -->
+          <div *ngFor="let review of movie.reviews; let idx = index">
+            <div class="review" *ngIf="review.name">
+              <ngb-rating [(rate)]="review.rating"></ngb-rating>
+              <p class="textReview">{{review.text}}</p>
+              <p class="elseReview">({{review.name}})</p>
+            </div>
+          </div>
+          <!-- end all reviews -->
+          <button type="button" class="btn addNew" data-toggle="collapse" data-target="#addReview">Add review</button>
+          <div class="collapse" id="addReview">
+            <div class="inp">
+                <p>Name:</p><input type="text" [(ngModel)]="newReview.name">
+            </div>
+            <div class="inp">
+                <p>Comment:</p><input type="text" [(ngModel)]="newReview.text">
+            </div>
+            <div class="inp">
+                <p>Rate:</p><input type="number" step="0.1" min="0" max="5" value="0" [(ngModel)]="newReview.rating">
+                <button (click)="addReview()" class="addBtn">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

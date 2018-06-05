@@ -1,0 +1,103 @@
+*{
+    color: #fff;
+}
+.showMovie {
+    width: 49%;
+    margin: 80px auto;
+    border: 2px dashed #fff;
+    padding: 26px;
+    border-radius: 10px;
+    overflow: hidden;
+    
+    .director{
+        font-style: italic;
+        font-family: 'Bowlby One SC', cursive;
+        letter-spacing: 2px;
+        color: #ffbb00;
+    }
+    .fullDit{
+        font-size: 15px;
+    }
+    .right{
+        float: right;
+        text-align: center;
+        width: 30%;
+    }
+    .left{
+        float: left;
+        width: 70%;
+        padding-top: 10px;
+
+        .btn{
+            background-color: #ffbb00;
+        }
+        .btn:hover{
+            background-color: #e3ad17;
+        }
+
+        div#accordion {
+            padding-top: 13px;
+        }
+        .review {
+            border-bottom: 1px solid #494949;
+            padding: 6px 10px;
+
+            ngb-rating{
+                float: right;
+            }
+            p{
+                margin: 0;
+            }
+            p.textReview {
+                font-size: 16px;
+            }
+            p.elseReview {
+                font-size: 12px;
+                font-style: italic;
+                padding: 3px 0px;
+            }
+        }
+        .addNew{
+            margin-top: 20px;
+            margin-left: 10px;
+            font-size: 12px;
+        }
+        #addReview{
+            padding: 10px 30px;
+            .inp{
+                p{
+                    display: inline-block;
+                    width: 100px;
+                }
+                input{
+                    color: black;
+                    padding: 3px 5px;
+                    width: 230px;
+                    height: 34px;
+                }
+                .addBtn{
+                    float: right;
+                    border: 1px solid;
+                    background: black;
+                    font-size: 13px;
+                    height: 34px;
+                    width: 56px;
+                    cursor: pointer;
+                }
+            }
+        }
+        
+
+    }
+    .rate{
+        ngb-rating{
+            font-size: 30px;
+            margin-right: 6px;
+            color: #ffbb00;
+        }
+        span{
+            font-size: 13px;
+            vertical-align: text-top;
+        }
+    }
+}

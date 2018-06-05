@@ -10,18 +10,28 @@ import { Movie } from '../movie';
 export class MoviesComponent implements OnInit {
 
   movies = new Array<Movie>();
-  // filterTerm : string;
+  filterTerm : string;
 
   constructor(private moviesService : MoviesService) {
-    this.movies = moviesService.getMovies();
   }
 
   ngOnInit() {
+    this.setMovies();
   }
 
-  
+  setMovies() {
+    this.moviesService.getMovies().subscribe((movies) => { 
+      this.movies = movies;
+    });
+  }
+
   addToMyCollection(movie:Movie) {
     this.moviesService.addMovie(movie);
   }
 
+  onSearchChange( searchVal :string){
+    this.moviesService.searchMovies(searchVal).subscribe((movies) => { 
+      this.movies = movies;
+    });
+  }
 }

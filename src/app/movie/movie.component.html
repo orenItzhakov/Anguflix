@@ -1,11 +1,13 @@
 <div class="movie">
   <i *ngIf="collection && mode" class="material-icons" (click)="deleteFromColl(movie)" title="Delete movie from collection">delete</i>
   <i *ngIf="!collection" class="material-icons addMov" (click)="addToMyColl(movie)" title="Add this movie to collection">add</i>
+  <i class="material-icons showMov" (click)="showMovie(movie._id)" title="Show details">list_alt</i>
+  <div class="price">${{ movie.price }}</div>
   <h3>{{ movie.title }}<span> ({{ movie.year }})</span></h3>
   <div class="movieImg">
-    <img src="{{ movie.img }}"> 
+    <img src="{{ movie.imgUrl }}"> 
   </div>
   <div class="movieDescr">
-    <p>{{ movie.descrShort }}</p>
+    <p>{{ movie.shortDescription }}</p>
   </div>
   </div>

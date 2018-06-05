@@ -19,8 +19,8 @@ export class AddMovieComponent implements OnInit {
   }
   
   addMovie(){
-    this.moviesService.addNewMovie(this.movie);
-    this.router.navigate(['.']);
+    // this.moviesService.addNewMovie(this.movie);
+    // this.router.navigate(['.']);
   }
 
 }
