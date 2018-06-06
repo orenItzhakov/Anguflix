@@ -1,11 +1,13 @@
 <div class="allMovieDiv">
   <h1>All Movies in library&nbsp;</h1>
 
-  <input class="form-control" (input)="onSearchChange($event.target.value)" placeholder="Filter movie by name..." />
+  <app-loading-indicator *ngIf="loadingIndicator"></app-loading-indicator>
+
+  <input class="form-control" *ngIf="this.movies.length>0" (input)="onSearchChange($event.target.value)" placeholder="Filter movie by name..." />
 
   <div class="filter-header" *ngIf="filterTerm?.length > 0">Filtering movie by name: {{ filterTerm }}</div>
 
   <div class="movies">
-    <app-movie *ngFor="let movie of movies" [movie]="movie" (addColl)="addToMyCollection($event)" ></app-movie>
+    <app-movie *ngFor="let movie of movies" [movie]="movie" (addColl)="addToMyCollection($event)" dnd-draggable [dragEnabled]="true" [dragData]="movie"></app-movie>
   </div>
 </div>

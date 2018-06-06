@@ -29,6 +29,11 @@ export class CollectionComponent implements OnInit {
     this.cart.money += movie.price;
     var index = this.cart.movies.indexOf(movie);
     this.cart.movies.splice(index,1);
+    this.moviesService.saveCartInLocalStorage(); 
+  }
+
+  transferDataSuccess($event: any) {
+    this.moviesService.addMovie($event.dragData);
   }
 
 }

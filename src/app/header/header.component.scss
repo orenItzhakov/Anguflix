@@ -6,6 +6,9 @@
     letter-spacing: 2px;
     cursor: pointer;
 }
+.appName:focus{
+    outline: none;
+}
 nav{
     background: rgba(0, 0, 0, 0.75);
     padding: 10px 40px;
@@ -69,11 +72,39 @@ nav{
         left: 50%;
         transform: translate(-50%, -50%);
     
-        span{
+        .name{
             font-family: 'Bowlby One SC', cursive;
             color: #e50914;
             text-transform: uppercase;
             font-size: 100px;
         }
+        .arr{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            -webkit-animation: ani-mouse 2.5s linear infinite;
+            -moz-animation: ani-mouse 2.5s linear infinite;
+            animation: ani-mouse 2.5s linear infinite;
+        }
     }
 }
+
+
+@keyframes ani-mouse {
+    0% {
+      opacity: 1;
+      bottom: -50px;
+    }
+    15% {
+        opacity: 1;
+        bottom: -100px;
+    }
+    70% {
+        opacity: 0;
+        bottom: -100px;
+    }
+    100% {
+      opacity: 0;
+      bottom: -50px;
+    }
+  }

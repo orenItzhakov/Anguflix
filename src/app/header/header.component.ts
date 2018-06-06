@@ -20,10 +20,14 @@ export class HeaderComponent implements OnInit {
 
   addMoney(){
     this.cart.money+=1;
+    this.moviesService.saveCartInLocalStorage(); 
   }
 
   reduceMoney(){
-    if(this.cart.money!=0) this.cart.money-=1;
+    if(this.cart.money!=0){
+      this.cart.money-=1;
+      this.moviesService.saveCartInLocalStorage(); 
+    }
   }
 
 }

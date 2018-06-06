@@ -17,6 +17,8 @@ import { ShowMovieComponent } from './show-movie/show-movie.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MatFormFieldModule,MatInputModule } from '@angular/material';
 import {BrowserAnimationsModule,NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {DndModule} from 'ng2-dnd';
+import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import {BrowserAnimationsModule,NoopAnimationsModule} from '@angular/platform-br
     HeaderComponent,
     HomepageComponent,
     AddMovieComponent, 
-    ShowMovieComponent
+    ShowMovieComponent, LoadingIndicatorComponent
   ],
   imports: [
     HttpClientModule,
@@ -40,7 +42,8 @@ import {BrowserAnimationsModule,NoopAnimationsModule} from '@angular/platform-br
     BrowserModule,
     AppRoutingModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    DndModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,7 +9,7 @@ import { Review } from './review';
 const API = "https://anguflix-api.herokuapp.com/api";
 
 var idCurr : number = 5;
-const myCart : Cart = new Cart();
+const myCart : Cart = localStorage.getItem('myCart') ? JSON.parse(localStorage.getItem('myCart')) : new Cart();
 
 @Injectable({
   providedIn: 'root'
@@ -34,14 +34,20 @@ export class MoviesService {
     return myCart;
   }
 
+  saveCartInLocalStorage() {
+    localStorage.setItem('myCart', JSON.stringify(myCart));
+  }
+
   addMovie(movie : Movie){
     if (!myCart.movies.includes(movie) && myCart.money-movie.price >= 0){
       myCart.movies.push(movie);
       myCart.money -= movie.price;
+      this.saveCartInLocalStorage();
     }
   }
 
   addReviewToMovie(newReview : Review , id : any) : any{
     return this.http.post( API +'/movies/' + id + '/reviews' , newReview);
   }
+
 }

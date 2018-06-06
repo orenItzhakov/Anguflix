@@ -18,9 +18,12 @@
 
 .selectedMovies .headline{
     text-align: center;
+    -webkit-animation: 3s colorRed linear infinite;
     animation: 3s colorRed linear infinite;
     transition: 0.3s;
-    padding: 20px;
+    margin: 0px 60px;
+    padding: 60px 0px;
+    border: 2px dashed #fff;
     font-size: 18px;
 }
 .allCollectionDiv{
@@ -39,6 +42,7 @@
 }
 .movies{
     overflow: hidden;
+    cursor: default!important;
 }
 @keyframes colorRed {
     0% {

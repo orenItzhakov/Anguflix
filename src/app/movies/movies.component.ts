@@ -11,17 +11,19 @@ export class MoviesComponent implements OnInit {
 
   movies = new Array<Movie>();
   filterTerm : string;
+  loadingIndicator : boolean = true;
 
   constructor(private moviesService : MoviesService) {
   }
 
   ngOnInit() {
     this.setMovies();
-  }
+  } 
 
   setMovies() {
     this.moviesService.getMovies().subscribe((movies) => { 
       this.movies = movies;
+      this.loadingIndicator = false;
     });
   }
 
