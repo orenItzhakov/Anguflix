@@ -5,6 +5,7 @@ import { Movie } from '../movie';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Review } from '../review';
+import { BlockScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-show-movie',
@@ -18,19 +19,23 @@ export class ShowMovieComponent implements OnInit {
   movie : Movie;
   currentRate : number = 0;
   newReview : Review = new Review();
-
+  scrool : boolean = true;
   constructor(@Inject(DOCUMENT) private document: any , private config: NgbRatingConfig , private moviesService : MoviesService, private route : ActivatedRoute, private router : Router) {
     config.max = 5;
     config.readonly = true;
+
+    this.moviesService.movieObservable.subscribe((data)=>{
+      this.movie = data;
+      this.calcRate();
+      if(this.scrool) this.scrollToMovie();
+      this.newReview = new Review();
+    });
+
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.moviesService.getMovie(params.id).subscribe((result)=>{
-        this.movie = result;
-        this.calcRate();
-        this.scrollToMovie();
-      });
+      this.moviesService.getMovie(params.id);
     });
   }
 
@@ -53,12 +58,10 @@ export class ShowMovieComponent implements OnInit {
           window.scrollTo(0, 734);
       }
     }, 100);
+    this.scrool = false;
   }
 
   addReview(){
-    this.moviesService.addReviewToMovie(this.newReview , this.movie._id).subscribe((result)=>{
-      this.movie.reviews = result.reviews;
-      this.newReview = new Review();
-    });
+    this.moviesService.addReviewToMovie(this.newReview , this.movie._id);
   }
 }

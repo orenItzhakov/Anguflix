@@ -8,32 +8,25 @@ import { Movie } from '../movie';
   styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
-
-  movies = new Array<Movie>();
+  movies:Array<Movie>;
   filterTerm : string;
   loadingIndicator : boolean = true;
 
   constructor(private moviesService : MoviesService) {
-  }
-
-  ngOnInit() {
-    this.setMovies();
-  } 
-
-  setMovies() {
-    this.moviesService.getMovies().subscribe((movies) => { 
-      this.movies = movies;
+    this.moviesService.moviesObservable.subscribe((data)=>{
+      this.movies = data;
       this.loadingIndicator = false;
     });
   }
+
+  ngOnInit() {
+  } 
 
   addToMyCollection(movie:Movie) {
     this.moviesService.addMovie(movie);
   }
 
   onSearchChange( searchVal :string){
-    this.moviesService.searchMovies(searchVal).subscribe((movies) => { 
-      this.movies = movies;
-    });
+    this.moviesService.searchMovies(searchVal);
   }
 }

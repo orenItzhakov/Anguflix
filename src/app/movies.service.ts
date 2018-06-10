@@ -16,18 +16,40 @@ const myCart : Cart = localStorage.getItem('myCart') ? JSON.parse(localStorage.g
 })
 export class MoviesService {
 
-  constructor(private http : HttpClient) { }
+  movies = new Array<Movie>();
+  moviesSubject : Subject<Movie[]> = new Subject<Movie[]>();
+  moviesObservable:Observable<Movie[]>;
+  
+  movie : any;
+  movieSubject : Subject<Movie> = new Subject<Movie>();
+  movieObservable:Observable<Movie>;
 
-  getMovies() : Observable<Movie[]> {
-    return this.http.get<Movie[]>( API +'/movies');
+  constructor(private http : HttpClient) {
+    this.moviesObservable = this.moviesSubject.asObservable();
+    this.getMovies();
+
+    this.movieObservable = this.movieSubject.asObservable();
+  }
+
+  getMovies() : void {
+    this.http.get<Movie[]>( API +'/movies').subscribe((data)=>{
+      this.movies = data;
+      this.moviesSubject.next(this.movies);
+    });
+  }   
+
+  searchMovies(searchVal : string ) : void {
+    this.http.get<Movie[]>( API +'/movies?title=' + searchVal).subscribe((data)=>{
+      this.movies = data;
+      this.moviesSubject.next(this.movies);
+    });
   } 
 
-  searchMovies(searchVal : string ) : Observable<Movie[]> {
-    return this.http.get<Movie[]>( API +'/movies?title=' + searchVal);
-  } 
-
-  getMovie(id : string ) : Observable<Movie> {
-    return this.http.get<Movie>( API +'/movies/' + id);
+  getMovie(id : string ) : void {
+    this.http.get<Movie>( API +'/movies/' + id).subscribe((data)=>{
+      this.movies[id] = data;
+      this.movieSubject.next(this.movies[id]);
+    });
   } 
 
   getMyCart() : Cart {
@@ -46,8 +68,11 @@ export class MoviesService {
     }
   }
 
-  addReviewToMovie(newReview : Review , id : any) : any{
-    return this.http.post( API +'/movies/' + id + '/reviews' , newReview);
+  addReviewToMovie(newReview : Review , id : any) : void{  
+    this.http.post( API +'/movies/' + id + '/reviews' , newReview).subscribe((data)=>{
+      this.movie = data;
+      this.movieSubject.next(this.movie);
+    });
   }
 
 }

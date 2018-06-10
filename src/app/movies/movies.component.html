@@ -3,7 +3,7 @@
 
   <app-loading-indicator *ngIf="loadingIndicator"></app-loading-indicator>
 
-  <input class="form-control" *ngIf="this.movies.length>0" (input)="onSearchChange($event.target.value)" placeholder="Filter movie by name..." />
+  <input class="form-control" *ngIf="this.movies?.length>0" (input)="onSearchChange($event.target.value)" placeholder="Filter movie by name..." />
 
   <div class="filter-header" *ngIf="filterTerm?.length > 0">Filtering movie by name: {{ filterTerm }}</div>
 
